@@ -55,7 +55,7 @@ def galois(byte_etapa3, byte_matriz):
 
     termo1 = int(subByte(byte_etapa3, tabelas.l))
     termo2 = int(subByte(byte_matriz, tabelas.l))
-    result_soma  = termo1 + termo2;
+    result_soma = termo1 + termo2
     if(result_soma > 255):
         result_soma = 255
 
@@ -66,19 +66,31 @@ def rodada5(matriz4, roundkey):
     result = [[0 for x in range(4)] for y in range(4)] 
     for y in range(4):
         for x in range(4):
-            result[x][y] = matriz4[x][y] ^ roundkey[x][y]
+            result[y][x] = matriz4[x][y] ^ roundkey[x][y]
     return result
 
 def rodada4(matriz3):
     result = [[0 for x in range(4)] for y in range(4)]
-    matriz_manipulacao = [[2,3,1,1],
+    matriz_multiplicacao = [[2,3,1,1],
                           [1,2,3,1],
                           [1,1,2,3],
                           [3,1,1,2]]
     for y in range(4):
         for x in range(4):
-            for i in range(4):
-                result[y][x] = galois(matriz3[0][y], matriz_manipulacao[y][0])
+            x1 = x + 1
+            if(x1 > 3):
+                x1 = x1 % 3
+            x2 = x + 2
+            if(x2 > 3):
+                x2 = x2 % 3
+            x3 = x + 3
+            if(x3 > 3):
+                x3 = x3 % 3
+            r1 = galois(matriz3[0][y], matriz_multiplicacao[x][0])
+            r2 = galois(matriz3[1][y], matriz_multiplicacao[x][1])
+            r3 = galois(matriz3[2][y], matriz_multiplicacao[x][2])
+            r4 = galois(matriz3[3][y], matriz_multiplicacao[x][3])
+            result[y][x] = (r1) ^ (r2) ^ (r3) ^ (r4)
     return result
 
 def rodada3(matriz):
@@ -115,16 +127,16 @@ def rodada1(textoSimples, roundKey0):
 
 def cifragem(textoSimples, key_schedule):
     textoCifrado = rodada1(textoSimples, key_schedule[0])
-    for i in range(11):
-        log_matriz(textoCifrado, 'AddRoundKey-Round '+str(i))
+    log_matriz(textoCifrado, 'AddRoundKey-Round 0')
+    for i in range(1, 11):
         b = rodada2(textoCifrado)
-        log_matriz(b, 'SubBytes-Round '+str(i))
+        log_matriz(b, 'SubBytes-Round ' + str(i))
         c = rodada3(b)
-        log_matriz(c, 'ShiftRows-Round '+str(i))
+        log_matriz(c, 'ShiftRows-Round ' + str(i))
         d = rodada4(c)
-        log_matriz(d, 'MixedColumns-Round '+str(i))
+        log_matriz(d, 'MixedColumns-Round ' + str(i))
         textoCifrado = rodada5(d,key_schedule[i])
-        log_matriz(textoCifrado, 'addRoundKey-Round '+str(i))
+        log_matriz(textoCifrado, 'addRoundKey-Round ' + str(i))
     return textoCifrado
 
 def generateRoundConstant(roundKeyIndex):

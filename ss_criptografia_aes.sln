@@ -1,8 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29001.49
 MinimumVisualStudioVersion = 15.0.26124.0
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EF125807-BA85-4275-8B48-43B3D1018A1D}"
+	ProjectSection(SolutionItems) = preProject
+		aes.py = aes.py
+	EndProjectSection
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AES", "AES\AES.pyproj", "{4B84EF9C-66E8-4BCA-A014-5283A303E311}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,7 +19,18 @@ Global
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4B84EF9C-66E8-4BCA-A014-5283A303E311}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B84EF9C-66E8-4BCA-A014-5283A303E311}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4B84EF9C-66E8-4BCA-A014-5283A303E311}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4B84EF9C-66E8-4BCA-A014-5283A303E311}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B84EF9C-66E8-4BCA-A014-5283A303E311}.Release|x64.ActiveCfg = Release|Any CPU
+		{4B84EF9C-66E8-4BCA-A014-5283A303E311}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {628747CC-B4C5-440B-8BE6-A9FF34494071}
 	EndGlobalSection
 EndGlobal
